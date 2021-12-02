@@ -1,0 +1,11 @@
+
+FROM python:3.9-alpine
+
+RUN  pip3 install flask pika redis jsonpickle
+
+RUN  mkdir /app
+COPY	rest-server.py /app
+
+EXPOSE	5000
+WORKDIR /
+CMD	python3 app/rest-server.py

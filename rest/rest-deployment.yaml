@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rest
+spec:
+  selector:
+    matchLabels:
+      app: rest
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: rest
+    spec:
+      containers:
+      - name: rest
+        image: utsavag/kt-search-rest:v1
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        env:
+          - name: REDIS_HOST
+            value: redis
+          - name : RABBITMQ_HOST
+            value: rabbitmq
+---

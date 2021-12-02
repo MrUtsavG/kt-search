@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker
+spec:
+  selector:
+    matchLabels:
+      app: worker
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: worker
+    spec:
+      containers:
+      - name: worker
+        image: utsavag/kt-search-worker:v1
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        env:
+          - name: REDIS_HOST
+            value: redis
+          - name : RABBITMQ_HOST
+            value: rabbitmq
+---
