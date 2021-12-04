@@ -1,8 +1,8 @@
-VERSION=v1
+VERSION=v2
 DOCKERUSER=utsavag
 
 build:
-	docker build -f Dockerfile-worker -t kt-search-worker .
+	docker build --platform linux/amd64 -f Dockerfile-worker -t kt-search-worker .
 push:
 	docker tag kt-search-worker $(DOCKERUSER)/kt-search-worker:$(VERSION)
 	docker push $(DOCKERUSER)/kt-search-worker:$(VERSION)

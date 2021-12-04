@@ -3,19 +3,10 @@ kind: Ingress
 metadata:
   name: kt-search-ingress
   namespace: default
-  annotations:
-    # use the shared ingress-nginx
-    kubernetes.io/ingress.class: "nginx"
 spec:
-  rules:
-  - host: localhost
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: rest
-            port:
-              number: 8088
+  defaultBackend:
+    service:
+      name: rest
+      port:
+        number: 8088
 ---

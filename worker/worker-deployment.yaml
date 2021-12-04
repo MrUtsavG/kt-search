@@ -14,14 +14,21 @@ spec:
     spec:
       containers:
       - name: worker
-        image: utsavag/kt-search-worker:v1
-        resources:
-          requests:
-            cpu: 100m
-            memory: 100Mi
+        image: utsavag/kt-search-worker:v2
+        #resources:
+          #requests:
+            #cpu: 100m
+            #memory: 100Mi
         env:
           - name: REDIS_HOST
             value: redis
           - name : RABBITMQ_HOST
             value: rabbitmq
+        volumeMounts:
+          - mountPath: "/data/uploads/"
+            name: worker-mount
+      volumes:
+        - name: worker-mount
+          persistentVolumeClaim:
+            claimName: worker-pvc
 ---

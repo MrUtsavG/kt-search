@@ -9,7 +9,7 @@ import sys
 #
 # Use localhost & port 5000 if not specified by environment variable REST
 #
-REST = "localhost"
+REST = "<Enter Ingress Address Here>"
 
 ##
 # The following routine makes a JSON REST query of the specified type
@@ -33,21 +33,15 @@ def mkReq(reqmethod, endpoint, data):
         return response.text
 
 
-mkReq(requests.post, "apiv1/analyze",
+mkReq(requests.post, "apiv1/upload",
       data={
-          "model": "sentiment",
-          "sentences": [
-              "I think this is a good thing",
-              "This thing sucks",
-              "I don't like that one"
-          ],
-          "callback": {
-              "url": "http://localhost:5000",
-              "data": {"some": "arbitrary", "data": "to be returned"}
-          }
+          "video_url": "https://storage.cloud.google.com/kt-search-dump/Screen%20Recording%201.mov?authuser=1",
+          "video_name": "Screen Recording Test1",
+          "video_ext": "mov"
       }
       )
 
+'''
 print('Waiting for action to complete...')
 
 time.sleep(80)
@@ -66,5 +60,5 @@ mkReq(requests.get, "apiv1/sentence",
           ]
       }
       )
-
+'''
 sys.exit(0)

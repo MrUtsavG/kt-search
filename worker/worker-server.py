@@ -13,7 +13,7 @@ import json
 
 import moviepy.editor as mp
 
-from urllib3 import request
+from urllib import request
 from contextlib import closing
 
 

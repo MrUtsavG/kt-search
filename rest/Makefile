@@ -2,7 +2,7 @@ VERSION=v1
 DOCKERUSER=utsavag
 
 build:
-	docker build -f Dockerfile-rest -t kt-search-rest .
+	docker build --platform linux/amd64 -f Dockerfile-rest -t kt-search-rest .
 
 push:
 	docker tag kt-search-rest $(DOCKERUSER)/kt-search-rest:$(VERSION)
