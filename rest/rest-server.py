@@ -25,7 +25,7 @@ log.setLevel(logging.DEBUG)
 
 
 ##
-# Main page
+# Main page of the app
 ##
 @app.route('/')
 def root():

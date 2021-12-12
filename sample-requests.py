@@ -3,12 +3,13 @@
 import requests
 import json
 import sys
+import time
 
 
 ##
 # Use localhost & port 5000 if not specified by environment variable REST
 ##
-REST = "34.149.160.137"
+REST = "<Enter Server IP here>"
 
 
 ##
@@ -43,12 +44,15 @@ mkReq(requests.post, "apiv1/upload",
       }
       )
 
-# Wait for operation to complete before searching for keywords.
 
-'''
+print('Waiting for action to complete...')
+
+time.sleep(120)
+
+print('Action completed...')
+
 
 mkReq(requests.get, "apiv1/search", params={"q": "Liverpool"}, data=None)
 
-'''
 
 sys.exit(0)
