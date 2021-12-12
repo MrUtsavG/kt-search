@@ -8,13 +8,16 @@ RUN  python3 -m pip install --upgrade setuptools
 RUN  pip install pika redis 
 
 RUN pip install moviepy \
-    && pip install google-cloud-container google-cloud-speech
+    && pip install google-cloud-container google-cloud-speech google-cloud-storage
+
+RUN pip install yake ffmpeg-python
 
 RUN  mkdir /app
 COPY	worker-server.py /app
 
 ENV PYTHONUNBUFFERED="True"
 ENV PYTHONIOENCODING="UTF-8"
+ENV IMAGEIO_FFMPEG_EXE="ffmpeg"
 
 WORKDIR /
 CMD	python3 app/worker-server.py

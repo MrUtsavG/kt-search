@@ -23,19 +23,18 @@ app = Flask(__name__)
 log = logging.getLogger('werkzeug')
 log.setLevel(logging.DEBUG)
 
-#
+
+##
 # Main page
-#
-
-
+##
 @app.route('/')
 def root():
     return "<h1>KT Search Server</h1>"
 
 
-#
+##
 # Upload endpoint - To upload KT videos
-#
+##
 @app.route('/apiv1/upload', methods=['POST'])
 def upload():
     # Establish a new RabbitMQ connection
@@ -64,19 +63,18 @@ def upload():
     return Response(response=response_pickled, status=200, mimetype="application/json")
 
 
-#
+##
 # Search endpoint - To search for words mentioned in the uploaded videos
-#
-@app.route('/apiv1/search', methods=['GET'])
+##
+@app.route('/apiv1/search', methods=['GET', 'POST'])
 def search():
     query = request.args.get("q")
-
     value = db.get(query)
-
     result = []
 
-    for vid, timestamp in value:
-        result.append((vid, timestamp))
+    if value:
+        value_str = value.decode("utf-8")
+        result = value_str.split(';')
 
     if len(result) > 0:
         data = {"result": result}

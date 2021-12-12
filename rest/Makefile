@@ -1,4 +1,4 @@
-VERSION=v1
+VERSION=v10
 DOCKERUSER=utsavag
 
 build:

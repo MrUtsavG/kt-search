@@ -1,4 +1,4 @@
-VERSION=v2
+VERSION=v15
 DOCKERUSER=utsavag
 
 build:

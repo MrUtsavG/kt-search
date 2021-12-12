@@ -14,11 +14,8 @@ spec:
     spec:
       containers:
       - name: rest
-        image: utsavag/kt-search-rest:v1
-        resources:
-          requests:
-            cpu: 100m
-            memory: 100Mi
+        image: utsavag/kt-search-rest:v10
+        imagePullPolicy: Always
         env:
           - name: REDIS_HOST
             value: redis
